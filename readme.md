@@ -2,11 +2,8 @@
 
 # SUMMARY:
 
-      this plugin requires the latest jQuery
-
       appendPageLinks() function,
         adds the pagination functionality for selected html elements child elements
-
         for selected parent html element node, $node
           treats the $node as an array of child elements
 
@@ -76,7 +73,9 @@
 
        step 3: add the javascript src tags to the html page or template as follows
 
-           <script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
+           * this plugin requires the latest jQuery
+
+           <script src="js-dir-or-link-to-latest/jquery-latest-version.min.js"></script>
            <script src="js-dir-to/paginatgion-plugin.js"></script>
            <script src="js-dir-or-link-to/YOURapp.js"></script>
 
