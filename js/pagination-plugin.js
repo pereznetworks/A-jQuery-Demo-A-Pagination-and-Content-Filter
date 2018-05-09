@@ -23,9 +23,9 @@ function setMaxIndex(lengthOfArray, pageToShow, itemsPerPage){
 }
 
 function hideItems($node){
-  // 'hide' all list items in the html Node by adding a style attribute of 'display:none;'
-  $node.children().attr('style', 'display:none');
-}
+    // 'hide' all list items in the html Node by adding a style attribute of 'display:none;'
+    $node.children().attr('style', 'display:none');
+  }
 
 function showPage($node, pageToShow, itemsPerPage, showSrchReslts) {
 
@@ -143,10 +143,18 @@ function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts) {
     // hide all html child elements from the ul that contain the list items
     hideItems($node);
 
-    // take the node of list items, split up into as many pages needed for ItemsPerPage
-    $node = showPage($node, pageNum, perPage, showSrchReslts);
-  }
+    if (lengthOfArray == 0) {
+      // if no search-results
+        $node.append( buildNoResultsListItem() )
+        // prepend "no matching results found " to $node
+    } else {
 
+      // take the node of list items, split up into as many pages needed for ItemsPerPage
+      $node = showPage($node, pageNum, perPage, showSrchReslts);
+
+    } // end if no search-results/else
+
+  } // end if not showing search results
 
   $node.parent().append( createPageLinks(lengthOfArray, pageNum, perPage) );
   // initial run and each time after, create and append a new set of page links
@@ -182,6 +190,7 @@ function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts) {
       }); // end pagination event listener
 
    }); // end forEach paginationLinks
+
 
 } // end appendPageLinks function
 
