@@ -128,13 +128,6 @@ function runSearchTool($node, nodeSearch, showSrchReslts){
     $node.children().attr('style','display:none;');
     $node.children().removeAttr('id','search-result');
 
-    if (!e.which === 13 ) {  // if key entered is not [ENTER or RETURN ]
-      $('.pagination').remove('*');
-    } else {
-      e.preventDefault();
-      //findDislayMatches($node, nodeSearch, SrchResltsObject);
-    }
-
     $node.children().find(nodeSearch).filter(function(){
       // filter on just first level child nodes, using the nodeSearch string, don't drill into each child node
 
@@ -142,15 +135,26 @@ function runSearchTool($node, nodeSearch, showSrchReslts){
         $(this.parentNode.parentNode).removeAttr('style', 'display:none;');
         $(this.parentNode.parentNode).attr('id','search-result');
         matches++;
+
+        SrchResltsObject.show = true;
+      } else {
+        if (SrchResltsObject){
+          if (e.which === 13 ) {  // if key entered is not [ENTER or RETURN ]
+            e.preventDefault();
+            $( "#search-tool" ).submit(findDislayMatches($node, nodeSearch, SrchResltsObject));
+          }
+        } else {
+          if (e.which === 13 ) {  // if key entered is not [ENTER or RETURN ]
+            e.preventDefault();
+            $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
+          }
+        }
+
         // if $node child element's, nodeSearch, textContent includes text from search input
         // add display none style tag
       }  // end if there is a match
 
     }); // end contents filter
-
-    SrchResltsObject.show = true;
-
-
 }).append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
 
   $( "#search-tool" ).submit(function(e) {
