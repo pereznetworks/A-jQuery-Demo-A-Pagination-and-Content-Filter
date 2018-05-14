@@ -36,8 +36,7 @@ function buildSearchTool($node){
 
 function buildNoResultsListItem($node) {
   const noresultsListItem = document.createElement('li');
-  noresultsListItem.setAttribute('class', 'listItem')
-  noresultsListItem.setAttribute('id', 'noresults');
+  noresultsListItem.setAttribute('class', 'no-resultsListItem');
 
   const noresultsDetails =  document.createElement('div');
   noresultsDetails.setAttribute('class', 'listItem-details');
@@ -102,8 +101,6 @@ function findDislayMatches($node, nodeSearch, srchResltsObject) {
       // reset from search results, to pagination of all $node's elements
     }
 
-  return $node;
-
 } // end findDislayMatches()
 
 function runSearchTool($node, nodeSearch, showSrchReslts){
@@ -122,14 +119,20 @@ function runSearchTool($node, nodeSearch, showSrchReslts){
     SrchResltsObject.show = false;
   }
 
+  $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
+
   $( "#search-tool" ).keyup(function(e){
     e.preventDefault();
     // $('.pagination').remove('*');
+    $('.no-resultsListItem').remove('*');
     $node.children().attr('style','display:none;');
     $node.children().removeAttr('id','search-result');
 
     $node.children().find(nodeSearch).filter(function(){
       // filter on just first level child nodes, using the nodeSearch string, don't drill into each child node
+      // if $node child element's, nodeSearch, textContent includes text from search input
+      // add display none style tag and id of search-result
+
 
       if ( this.textContent.toLowerCase().includes(event.target.value.toLowerCase()) ) {
         $(this.parentNode.parentNode).removeAttr('style', 'display:none;');
@@ -137,25 +140,28 @@ function runSearchTool($node, nodeSearch, showSrchReslts){
         matches++;
 
         SrchResltsObject.show = true;
-      } else {
-        if (SrchResltsObject){
-          if (e.which === 13 ) {  // if key entered is not [ENTER or RETURN ]
-            e.preventDefault();
-            $( "#search-tool" ).submit(findDislayMatches($node, nodeSearch, SrchResltsObject));
-          }
-        } else {
-          if (e.which === 13 ) {  // if key entered is not [ENTER or RETURN ]
-            e.preventDefault();
-            $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
-          }
-        }
+      } // end if there is a match
 
-        // if $node child element's, nodeSearch, textContent includes text from search input
-        // add display none style tag
-      }  // end if there is a match
+
+      if (SrchResltsObject.show){
+        if (e.which === 13 || e.which === 9) {  // if key entered is not [ENTER or RETURN ]
+          e.preventDefault();
+          $( "#search-tool" ).submit(findDislayMatches($node, nodeSearch, SrchResltsObject));
+          return $node;
+        }
+      } else {
+        if (e.which === 13 || e.which === 9) {  // if key entered is not [ENTER or RETURN ]
+          e.preventDefault();
+          $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
+          return $node;
+        }
+      }
+
+
 
     }); // end contents filter
-}).append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
+})
+
 
   $( "#search-tool" ).submit(function(e) {
     // on submit, capture text typed into search input field
