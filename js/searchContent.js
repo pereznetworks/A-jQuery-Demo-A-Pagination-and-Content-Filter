@@ -88,6 +88,8 @@ function findDislayMatches($node, nodeSearch, srchResltsObject) {
         }
       }
 
+      //pagesNeeded = Math.ceil(matches / SrchResltsObject.itemsPerPage);
+
       srchResltsObject.show = true;
 
       $node.append(appendPageLinks($node, srchResltsObject.pageToShow, srchResltsObject.itemsPerPage, srchResltsObject.show, nodeSearch));
@@ -101,29 +103,36 @@ function findDislayMatches($node, nodeSearch, srchResltsObject) {
 
 } // end findDislayMatches()
 
-function runSearchTool($node, nodeSearch){
+function runSearchTool($node, nodeSearch, showSrchReslts){
 
   appendSearchTool($node)  // add search tool (yes, it's a form )
 
   let matches = 0;
   let SrchResltsObject = {};
+  let pagesNeeded = 1;
   SrchResltsObject.pageToShow = 1;
   SrchResltsObject.itemsPerPage = 10;
-  SrchResltsObject.show = true;
-  
+
+  if (showSrchReslts){
+    SrchResltsObject.show = true;
+  } else {
+    SrchResltsObject.show = false;
+  }
+
   $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
 
   $( "#search-tool" ).keyup(function(e){
     e.preventDefault();
-    // basically, hiding all $node children
+    // $('.pagination').remove('*');
     $('.no-resultsListItem').remove('*');
     $node.children().attr('style','display:none;');
     $node.children().removeAttr('id','search-result');
 
-    let $filteredNode = $node.children().find(nodeSearch).filter(function(){
+    $node.children().find(nodeSearch).filter(function(){
       // filter on just first level child nodes, using the nodeSearch string, don't drill into each child node
-      // if $node child element's, nodeSearch, textContent includes text from search input...
+      // if $node child element's, nodeSearch, textContent includes text from search input
       // add display none style tag and id of search-result
+
 
       if ( this.textContent.toLowerCase().includes(event.target.value.toLowerCase()) ) {
         $(this.parentNode.parentNode).removeAttr('style', 'display:none;');
@@ -131,37 +140,34 @@ function runSearchTool($node, nodeSearch){
         matches++;
 
         SrchResltsObject.show = true;
-      } // end if
+      } // end if there is a match
 
-     }); // end contents filter
 
-     $node.append(appendPageLinks($filteredNode, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
+      if (SrchResltsObject.show){
+        if (e.which === 13 || e.which === 9) {  // if key entered is not [ENTER or RETURN ]
+          e.preventDefault();
+          $( "#search-tool" ).submit(findDislayMatches($node, nodeSearch, SrchResltsObject));
+          return $node;
+        }
+      } else {
+        if (e.which === 13 || e.which === 9) {  // if key entered is not [ENTER or RETURN ]
+          e.preventDefault();
+          $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
+          return $node;
+        }
+      }
 
-     if (SrchResltsObject.show){
-       // then search input to filter by has been entered
-       if (e.which === 13 || e.which === 9) {  // if key entered is [ENTER or RETURN ]
-         e.preventDefault();
-         $( "#search-tool" ).submit(findDislayMatches($node, nodeSearch, SrchResltsObject));
-         return $node;
-       } // submit search input and filter contents of $node
-     } else {
-       // there is NO search input
-       if (e.which === 13 || e.which === 9) {  // if key entered is [ENTER or RETURN ]
-         e.preventDefault();
-         $node.append(appendPageLinks($node, SrchResltsObject.pageToShow, SrchResltsObject.itemsPerPage, SrchResltsObject.showSrchReslts, nodeSearch));
-         return $node;
-       } // display $node unfiltered
-     }
-  }); // end runSearchTool function
+
+
+    }); // end contents filter
+})
 
 
   $( "#search-tool" ).submit(function(e) {
     // on submit, capture text typed into search input field
-    let showSrchReslts = true;
     e.preventDefault();
-    findDislayMatches($node, nodeSearch, showSrchReslts);
-
+    findDislayMatches($node, nodeSearch, SrchResltsObject);
 
   }); // end add event handler to search-tool submit button
 
-} // end runSearchTool function
+} // end runSearchTool()
