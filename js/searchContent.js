@@ -142,6 +142,8 @@ function runSearchTool($node, nodeSearch, showSrchReslts){
         SrchResltsObject.show = true;
       } // end if there is a match
 
+      findDislayMatches($node, nodeSearch, SrchResltsObject);
+
 
       if (SrchResltsObject.show){
         if (e.which === 13 || e.which === 9) {  // if key entered is not [ENTER or RETURN ]
