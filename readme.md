@@ -3,6 +3,11 @@
     this is Project 2,
     part of TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 2
 
+      app.js, pagination.js and searchContent.js is my code,
+       submitted as part of the original project
+
+      html and css provided by Team Treehouse
+
 # SUMMARY:
 
   Current features
@@ -25,6 +30,24 @@
         'Live filtering':
           so the same, also
             filtering as text is typed into search input
+
+       Although, not part of the project requirements...
+        I wrote the javascript code for both...
+          the Pagination and Search Content Filtering...
+           as modular components.
+
+      So these modular components can be integrated easily into other...
+       front-end html web pages.
+
+   Wish List:
+
+      test both of the Pagination and Content Filtering methods more throughly
+        to verify these work with many other html pages, layouts and elements
+
+      modify the Pagination and Content Filtering methods..
+        to be deployed as part of a backend solution
+
+      someday make this into an NPM package
 
 # To use the Pagination method
 
@@ -117,6 +140,9 @@
 
 # FUNCTION DETIAL appendPageLinks():
 
+    although this function is a sub-function to the pagination() method...
+     a great deal of the pagination functionality happens in this function...
+
       appendPageLinks() function,
         adds the pagination functionality
          for selected html elements child elements
@@ -163,6 +189,8 @@
             - src for the pagination(), appendPageLinks()...
               and other pagination functions
 
+        my code submitted as part of the original project
+
 # CSS styling of elements for appendPageLinks():
 
         css/design.css, css styling includes,
@@ -171,8 +199,7 @@
 
         css/reset.css, a compatibility for older browsers
 
-        other than pagination and content filter...
-            css styling of your html sub-elements will be unchanged
+        css provided by Team Treehouse
 
 # SAMPLE HTML with student list for appendPageLinks():
 
@@ -182,4 +209,7 @@
           - student-list-examples/..,
               more html examples for demonstration
 
-          - js/app.js, a sample app.js for demonstration
+          these sample html files provided by Team Treehouse
+
+          - js/app.js, my code as part of the original project...
+            and for demonstration
