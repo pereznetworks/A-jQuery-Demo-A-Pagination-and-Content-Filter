@@ -54,7 +54,7 @@
 
       STEP 3: add the javascript src tags to the html page or template
 
-          * this requires at least jQuery 3.3.1
+          this requires at least jQuery 3.3.1
 
           <script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
 
