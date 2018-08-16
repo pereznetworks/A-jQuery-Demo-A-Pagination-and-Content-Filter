@@ -8,6 +8,6 @@ $(document).ready(function() {
   const nodeSearch = 'h3';
 
 // add the paginaiton-plugin paginaiton and content filtering features to selected $node
-  paginationPlugin($nodePaginate, nodeSearch);
+  pagination($nodePaginate, nodeSearch);
 
 }); // end ready function

@@ -1,4 +1,4 @@
-# Tech Degree - Project 2 - the Pagination and Content Filter jQuery plugin
+# Tech Degree - Project 2 - the Pagination and Content Filter using jQuery
 
     this is Project 2, part of TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 2
 
@@ -20,17 +20,17 @@
 
         'Live filtering' : filtering of search results as text is typed into search input
 
-# TO USE Pagination Plugin
+# To use pagination() method and the accompanying runSearchTool() method
 
       STEP 1: add the following lines to YOURapp.js
 
-          const $nodePaginate = $('.myElementClass');  
+          const $nodeToPaginate = $('.myElementClass');  
               // select element with elements to paginate
 
           const nodeSearch = "string of text"
-              // must be a tag, id, or class
-                // that selects a unique html element containing textContent
-                   // that can be used to filter child elements of html element selected in $nodePaginate
+              // must be a tag, id, or class....
+                // that references a unique html element containing textContent
+                   // that can be used to filter all child elements in $nodePaginate
 
           runSearchTool($nodePaginate, nodeSearch);  
               // implements and add the pagination to selected html node
@@ -47,17 +47,17 @@
       STEP 3: add the javascript src tags to the html page or template as follows
 
 
-          * this plugin requires the latest jQuery
+          * this pagination method requires at least jQuery 3.3.1
 
-          <script src="js-dir-or-link-to-latest/jquery-latest-version.min.js"></script>
+          <script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
 
-          <script src="js-dir-to/search-plugin.js"></script>
+          <script src="js-dir-to/search.js"></script>
 
-          <script src="js-dir-to/paginatgion-plugin.js"></script>
+          <script src="js-dir-to/paginatgion.js"></script>
 
           <script src="js-dir-or-link-to/YOURapp.js"></script>
 
-# FUNCTION DETAIL pagination-plugin()
+# FUNCTION DETAIL pagination()
 
         This a simple function the calls 1 function:
           runSearchTool()
@@ -165,11 +165,11 @@
 
 # JS src code
 
-        js/searchContent-plugin.js
+        js/searchContent.js
             - src for the runSearchTool() function
 
-        js/pagination-plugin.js
-            - src for the pagination-plugin(), and appendPageLinks() functions
+        js/pagination.js
+            - src for the pagination(), and appendPageLinks() functions
 
 # CSS styling of elements for appendPageLinks():
 
@@ -185,8 +185,8 @@
 # SAMPLE HTML with student list for appendPageLinks():
 
           - index.html, in the root dir,
-            a sample is provided to demonstrate the implementation of the pagination-plugin
+            a sample is provided to demonstrate the implementation of the pagination
 
-          - student-list-examples/.., more html examples to demonstrate the pagination-plugin
+          - student-list-examples/.., more html examples to demonstrate the pagination
 
-          - js/app.js, a sample app.js to demonstrate the pagination-plugin
+          - js/app.js, a sample app.js to demonstrate the pagination

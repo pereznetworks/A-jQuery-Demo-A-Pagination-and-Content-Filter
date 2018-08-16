@@ -215,7 +215,7 @@ function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts, nodeSe
 
 } // end appendPageLinks function
 
-function paginationPlugin($nodePaginate, nodeSearch){
+function pagination($nodePaginate, nodeSearch){
   // append Search Tool
     runSearchTool($nodePaginate, nodeSearch);
       // append Search Tool

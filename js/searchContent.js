@@ -97,7 +97,7 @@ function findDislayMatches($node, nodeSearch, srchResltsObject) {
 
     } else {
 
-      paginationPlugin($node, nodeSearch);
+      pagination($node, nodeSearch);
       // reset from search results, to pagination of all $node's elements
     }
 
