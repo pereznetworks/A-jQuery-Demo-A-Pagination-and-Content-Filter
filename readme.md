@@ -39,16 +39,6 @@
       So these modular components can be integrated easily into other...
        front-end html web pages.
 
-   Wish List:
-
-      test both of the Pagination and Content Filtering methods more throughly
-        to verify these work with many other html pages, layouts and elements
-
-      modify the Pagination and Content Filtering methods..
-        to be deployed as part of a backend solution
-
-      someday make this into an NPM package
-
 # To use the Pagination method
 
       STEP 1: add the following lines to YOURapp.js
@@ -213,3 +203,13 @@
 
           - js/app.js, my code as part of the original project...
             and for demonstration
+
+# In Future version
+
+     test both of the Pagination and Content Filtering methods more throughly
+       to verify these work with many other html pages, layouts and elements
+
+     modify the Pagination and Content Filtering methods..
+       to be deployed as part of a backend solution
+
+     someday make this into an NPM package
