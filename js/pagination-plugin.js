@@ -217,11 +217,7 @@ function appendPageLinks($node, pageToShow, itemsPerPage, showSrchReslts, nodeSe
 
 function paginationPlugin($nodePaginate, nodeSearch){
   // append Search Tool
-
-
     runSearchTool($nodePaginate, nodeSearch);
       // append Search Tool
       // and paginate and add Event Listener for each page link, add Search. Content Filter tool
-
-
 }
