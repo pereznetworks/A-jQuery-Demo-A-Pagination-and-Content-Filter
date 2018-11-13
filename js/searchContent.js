@@ -162,7 +162,7 @@ function runSearchTool($node, nodeSearch, showSrchReslts){
 
 
     }); // end contents filter
-})
+  }) // end search tool keyup
 
 
   $( "#search-tool" ).submit(function(e) {
