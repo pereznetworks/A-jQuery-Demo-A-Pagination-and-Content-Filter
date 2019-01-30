@@ -1,4 +1,4 @@
 
 P2/
-
+# on macOS filesystems ignore .DS_Store
 .DS_Store
