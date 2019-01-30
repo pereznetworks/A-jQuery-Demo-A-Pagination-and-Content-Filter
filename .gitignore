@@ -1,4 +1,5 @@
-
-P2/
 # on macOS filesystems ignore .DS_Store
-.DS_Store
+**/.DS_Store
+
+# ignore the P2 directory
+/P2
