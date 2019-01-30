@@ -3,8 +3,9 @@
     this is Project 2,
     part of TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 2
 
-      app.js, pagination.js and searchContent.js is my code,
-       submitted as part of the original project
+      javascript code : 
+       app.js, pagination.js and searchContent.js is my code,
+       I built and submitted as part of the original project
 
       html and css provided by Team Treehouse
 
