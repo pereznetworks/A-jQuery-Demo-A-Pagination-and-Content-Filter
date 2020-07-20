@@ -1,216 +1,202 @@
-# Tech Degree - Project 2 - the Pagination and Content Filter using jQuery
+# Demonstrating JQuery functionality - building a Pagination and Content Filter
 
-    this is Project 2,
-    part of TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 2
+### Eventually, the following will be re-written as a how-to tutorial
 
-      javascript code : 
-       app.js, pagination.js and searchContent.js is my code,
-       I built and submitted as part of the original project
+  - This was originally built as Project 2, part of TeamTreehouse, Tech Degree, Full Stack JavaScript
 
-      html and css provided by Team Treehouse
+  - my code: app.js, pagination.js and searchContent.js      
 
-# SUMMARY:
+  - sample html and css provided by Team Treehouse
 
-  Current features
+## SUMMARY:
 
-    for a selected HTML Collection node
+### Pagination: (for a selected HTML Collection node)
+  - Display of child elements, or items, based on Items-Per-Page.
+  - Pagination applied to a selected HTML parent element.
+  - Default is 10 Items-Per-Page , and 1st Page is initially displayed
 
-      Pagination:
+### Search Form and Content Filter:
+ - using a search input field:
+ - on 'submit' display any html node child elements..
+  - whose targeted property or attribute field matches...
+  - text submitted into search-tool's input field
 
-        Display of child elements, or items, based on Items-Per-Page.
-        Pagination applied to a selected HTML parent element.
-        Default is 10 Items-Per-Page , and 1st Page is initially displayed
+### 'Live filtering':
+  - so the same, also
+  - filtering as text is typed into search input
 
-      Search Form and Content Filter:
+### Although, not part of the project requirements...
+  - The Pagination and Search Content Filtering, are modular components.
+  - So these modular components can be integrated easily into other html pages.
 
-        using a search input field:
-        on 'submit' display any html node child elements..
-         whose targeted property or attribute field matches...
-           text submitted into search-tool's input field
+## To use the Pagination method
 
-        'Live filtering':
-          so the same, also
-            filtering as text is typed into search input
+### STEP 1: add the following lines to YOURapp.js
 
-       Although, not part of the project requirements...
-        I wrote the javascript code for both...
-          the Pagination and Search Content Filtering...
-           as modular components.
+  - const $nodePaginate = $('.myElementClass');  
+    // select element with child elements to paginate
 
-      So these modular components can be integrated easily into other...
-       front-end html web pages.
+  - const nodeSearch = "string of text"
+    // must be a tag, id, or class
+    // that selects a unique html element containing textContent
+    // that can be used to filter...
+    // all child elements of parent html element...
+    // selected in $nodePaginate
 
-# To use the Pagination method
+  - pagination($nodePaginate, nodeSearch);  
+    // implements and add the pagination to selected html node
+    // also calls runSearchTool
+    // must pass the nodeSearch parameter
 
-      STEP 1: add the following lines to YOURapp.js
 
-          const $nodePaginate = $('.myElementClass');  
-              // select element with child elements to paginate
+### STEP 2: add the css script src tags to the html page or template
 
-          const nodeSearch = "string of text"
-              // must be a tag, id, or class
-                // that selects a unique html element containing textContent
-                   // that can be used to filter...
-                     // all child elements of parent html element...
-                        // selected in $nodePaginate
+      <link rel="stylesheet" href="css-dir/reset.css">
 
-          pagination($nodePaginate, nodeSearch);  
-              // implements and add the pagination to selected html node
-                // also calls runSearchTool
-                  // must pass the nodeSearch parameter
+      <link rel="stylesheet" href="css-dir/design.css">
 
 
-      STEP 2: add the css script src tags to the html page or template
+### STEP 3: add the javascript src tags to the html page or template
 
-          <link rel="stylesheet" href="css-dir/reset.css">
-          <link rel="stylesheet" href="css-dir/design.css">
+  - this requires at least jQuery 3.3.1
 
+        <script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
 
-      STEP 3: add the javascript src tags to the html page or template
+        <script src="js-dir-to/search.js"></script>
 
-          this requires at least jQuery 3.3.1
+        <script src="js-dir-to/paginatgion.js"></script>
 
-          <script src="js-dir-or-link-to-latest/jquery-3.3.1.min.js"></script>
+        <script src="js-dir-or-link-to/YOURapp.js"></script>
 
-          <script src="js-dir-to/search.js"></script>
 
-          <script src="js-dir-to/paginatgion.js"></script>
+## JS src code
 
-          <script src="js-dir-or-link-to/YOURapp.js"></script>
+### js/searchContent.js
+  - src for the runSearchTool() and content filtering functions
 
-# FUNCTION DETAIL pagination()
+### js/pagination.js
+  - src for the pagination(), appendPageLinks()...
+    - and other pagination functions
 
-        This a simple function the calls 1 function:
-          runSearchTool()
+## FUNCTION DETAIL pagination()
 
-         1st argument or paramter, REQUIRED: $nodePaginate
-            must be the HTML Collection node that is the direct parent of ...
-                the child elements that need...
-                 the pagination and content filtering features
+### calls 1 function: runSearchTool()
 
-         2nd argument or paramter, REQUIRED: nodeSearch
-            must be a unique element, classname, id ...
-              found once in each of $node's child elements,
-                containing textContent that can be matched via string compare
+#### 1st argument or paramter, REQUIRED: $nodePaginate
 
+  - must be the HTML Collection node that is the direct parent of ...
+    - the child elements that need...
+    - the pagination and content filtering features
 
-# FUNCTION DETIAL runSearchTool():
+#### 2nd argument or paramter, REQUIRED: nodeSearch
 
-    runSearchTool($node)
+  - must be a unique element, classname, id ...
+    - found once in each of $node's child elements,
+    - containing textContent that can be matched via string compare
 
-      calls appendSearchTool
 
-          calls buildSearchTool, builds a html Form node called, 'searchTool'
-            with an text input field and submit button
-          adds the searchTool Form
-           as a the first child element of the parent of the $node
 
-      adds KEYUP event handler to the search input field
+## FUNCTION DETIAL: runSearchTool($node)
 
-          same as submitting search input...
-          doing with each char of text  typed
+### calls appendSearchTool
 
-      adds SUBMIT handler to the search-tool form
+  - calls buildSearchTool, builds a html Form node called, 'searchTool'
+    - with an text input field and submit button
+  - adds the searchTool Form
+    - as a the first child element of the parent of the $node
 
-          captures search input
-          if search input is entered..
-            hides all child elements of $node passed,
-            removes pagination links  
-            iterates through $node child elements
-                if any child elements containing search input text
-                  are set with an attribute id of search-result
+### adds KEYUP event handler to the search input field
 
-          appendPageLinks links is called...
-            to display and paginate search results
+  - same as submitting search input...
+  - doing with each char of text  typed
 
-          after search results displayed,
+  - adds SUBMIT handler to the search-tool form
 
-          submitting blank or empty search input
-           resets to original view of $node with corresponding page links
+    - captures search input
+    - if search input is entered..
+      - hides all child elements of $node passed,
+      - removes pagination links  
+      - iterates through $node child elements
+        - if any child elements containing search input text
+          - are set with an attribute id of search-result
 
+    - appendPageLinks links is called...
+      - to display and paginate search results
 
-# FUNCTION DETIAL appendPageLinks():
+    - after search results displayed,
 
-    although this function is a sub-function to the pagination() method...
-     a great deal of the pagination functionality happens in this function...
+    - submitting blank or empty search input
+      - resets to original view of $node with corresponding page links
 
-      appendPageLinks() function,
-        adds the pagination functionality
-         for selected html elements child elements
 
-          calls hideItems(), to hides all the child elements
-            takes a $node as required argument
-            a style attribute of display:none is added to each child element
-            returns the $node
+## FUNCTION DETIAL appendPageLinks():
 
-          calls showPage(), to show child elements for a given page
-            takes a $node as required argument
-            calls other smaller functions to...
-              calc how many pages needed for all $node child elements
-              set index and maxIndex for iterating through child elements
-              for the each of $node's child elements
-                any that have ID of search-result
-                 for the specified page of elements
-                  remove the style attribute of display:none
-              returns the $node
+### a great deal of the pagination functionality happens in this function...
 
-          calls createPageLinks(),
-          to create the html elements for a given number of page links
-            takes a lengthOfArray, pageToShow and itemsPerPage
-              returns a ul html element, with a set of li elements
-                each li element,
-                  contains an anchor tag with a href link to each page
+#### adds the pagination functionality
 
-          adds an event listener for each page link...
-            each event listener as a handler function that ...
-              removes the current page links
-                and their respective event listeners
-              and calls the appendPageLinks() function, passing $node,
-               setting pageToShow to the pageLink clicked on..
-                as well as the itemsPerPage
-                 and whether or not $node is being filtered with search results
+  - for selected html elements child elements
 
+#### calls hideItems(), to hides all the child elements
+  - takes a $node as required argument
+  - a style attribute of display:none is added to each child element
+  - returns the $node
 
-# JS src code
+#### calls showPage(), to show child elements for a given page
+  - takes a $node as required argument
+  - calls other smaller functions to...
+  - calc how many pages needed for all $node child elements
+  - set index and maxIndex for iterating through child elements
+    - for the each of $node's child elements
+     - any that have ID of search-result
+      - for the specified page of elements
+        - remove the style attribute of display:none
+  - returns the $node
 
-        js/searchContent.js
-            - src for the runSearchTool() and content filtering functions
+#### calls createPageLinks(),
+  - to create the html elements for a given number of page links
+  - takes a lengthOfArray, pageToShow and itemsPerPage
+  - returns a ul html element, with a set of li elements
+    - each li element,
+      - contains an anchor tag with a href link to each page
 
-        js/pagination.js
-            - src for the pagination(), appendPageLinks()...
-              and other pagination functions
+#### adds an event listener for each page link...
+  - each event listener as a handler function that ...
+    - removes the current page links
+      - and their respective event listeners
+    - and calls the appendPageLinks() function, passing $node,
+      - setting pageToShow to the pageLink clicked on..
+        - as well as the itemsPerPage
+         - and whether or not $node is being filtered with search results
 
-        my code submitted as part of the original project
+## CSS styling of elements for appendPageLinks():
 
-# CSS styling of elements for appendPageLinks():
+### provided by Team Treehouse, and I may have made some changes
 
-        css/design.css, css styling includes,
-            - styles for pagination buttons
-            - and sample student-list/student-items/cf
+### css/design.css,
 
-        css/reset.css, a compatibility for older browsers
+  - css styling includes
+    - styles for pagination buttons
+    - and sample student-list/student-items/cf
 
-        css provided by Team Treehouse
+### css/reset.css
 
-# SAMPLE HTML with student list for appendPageLinks():
+  - compatibility for older browsers
 
-          - index.html, in the root dir,
-            a sample is provided to for demonstration
+## SAMPLE HTML with student list to paginate
 
-          - student-list-examples/..,
-              more html examples for demonstration
+### provided by Team Treehouse
 
-          these sample html files provided by Team Treehouse
+  - index.html, in the root dir,
+    - a sample is provided to for demonstration
 
-          - js/app.js, my code as part of the original project...
-            and for demonstration
+  - student-list-examples/..,
+    - more html examples for demonstration
 
-# In Future Versions...
+### my code, for demonstration of how to integrate
 
-     test both of the Pagination and Content Filtering methods more throughly
-       to verify these work with many other html pages, layouts and elements
+  - js/app.js,
 
-     modify the Pagination and Content Filtering methods..
-       to be deployed as part of a backend solution
+## In Future Versions...
 
-     someday make this into an NPM package
+  - turn this into a how-to tutorial
