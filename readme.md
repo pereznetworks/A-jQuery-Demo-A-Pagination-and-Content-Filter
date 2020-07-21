@@ -1,6 +1,6 @@
 # Demonstrating jQuery functionality - building a Pagination and Content Filter
 
-### Eventually, the following will be re-written as a how-to tutorial
+  - Eventually, it will be adapted to be a how-to tutorial
 
   - This was originally built as Project 2, part of TeamTreehouse, Tech Degree, Full Stack JavaScript
 
