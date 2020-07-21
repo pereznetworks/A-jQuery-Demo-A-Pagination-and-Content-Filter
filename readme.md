@@ -1,4 +1,4 @@
-# Demonstrating JQuery functionality - building a Pagination and Content Filter
+# Demonstrating jQuery functionality - building a Pagination and Content Filter
 
 ### Eventually, the following will be re-written as a how-to tutorial
 
