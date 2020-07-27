@@ -8,7 +8,7 @@
 
   - sample html and css provided by Team Treehouse
 
-#### [A live version of this demo](https://pereznetworks.github.io/A-jQuery-Demo-A-Pagination-and-Content-Filter){:target="_blank"}
+#### <a href="https://pereznetworks.github.io/A-jQuery-Demo-A-Pagination-and-Content-Filter" target="_blank">A live version of this demo</a>
 
 ## SUMMARY:
 
