@@ -8,6 +8,9 @@
 
   - sample html and css provided by Team Treehouse
 
+#### A live version of this demo
+- https://pereznetworks.github.io/A-jQuery-Demo-A-Pagination-and-Content-Filter
+
 ## SUMMARY:
 
 ### Pagination: (for a selected HTML Collection node)
