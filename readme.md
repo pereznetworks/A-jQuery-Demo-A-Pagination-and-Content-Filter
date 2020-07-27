@@ -1,9 +1,3 @@
-const linkRenderer = renderer.link;
-renderer.link = (href, title, text) => {
-  const html = linkRenderer.call(renderer, href, title, text);
-  return html.replace(/^<a /, '<a target="_blank" rel="nofollow" ');
-};
-
 # Demonstrating jQuery functionality - building a Pagination and Content Filter
 
   - Eventually, it will be adapted to be a how-to tutorial
